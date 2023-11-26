@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,10 @@ Route::controller(HomeController::class)->group(function () {
    Route::prefix('/')->group(function () {
        Route::get('/', 'index');
    });
+});
+
+Route::controller(ContactsController::class)->group(function () {
+    Route::prefix('/contacts')->group(function () {
+        Route::get('/', 'index');
+    });
 });
