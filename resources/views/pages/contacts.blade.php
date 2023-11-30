@@ -8,7 +8,7 @@
     <div style="background-image: url('{{ asset('/assets/img/background.png') }}')" class="page-heading">
         <div class="container">
             <div class="page-heading__container">
-                <p>Контакты</p>
+                <p class="page-heading__title">Контакты</p>
             </div>
         </div>
     </div>

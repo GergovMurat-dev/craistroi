@@ -5,63 +5,41 @@
 @endsection
 
 @section('content')
-    <main style="background-image: url('{{ asset('/assets/img/background.png') }}')">
+    <main style="background-image: url('/storage/{{$main->background_image}}')">
         <div class="container">
             <div class="main__container">
-                <p class="main__title">СТРОИМ ПО-НОВОМУ</p>
-                <p class="main__description">Мы материализуем мечты и желания. <br>
-                    В проектах используем новейшие <br>
-                    достижения мировой архитектуры.</p>
+                <p class="main__title">{{ $main->main_title }}</p>
+                <p class="main__description">{{ $main->main_description }}</p>
                 <button class="primary-btn">
                     Получить консультацию
                 </button>
+                <a class="main__whatsapp" href="">
+                    <img src="{{ asset('/assets/img/header__whatsapp.png') }}" alt="">
+                </a>
             </div>
         </div>
     </main>
-    <section>
-        <div class="container">
-            <div class="section__about-us">
-                <div>
-                    <p class="section__about-us__title main-title">О нас</p>
-                    <p class="section__about-us__description">В нашем портфолио больше тысячи реализованных проектов. Мы
-                        поможем Вам реализовать идею, при этом учтем все требования и пожелания. Вы доверите проект
-                        компетентным специалистам.</p>
-                    <a href="/" class="primary-btn">
-                        Узнать больше
-                    </a>
-                </div>
-                <div class="section__about-us__image-container">
-                    <img src="{{ asset('/assets/img/home1.png') }}" alt="">
+    @if($main->about_us['description'] && $main->about_us['image'])
+        <section>
+            <div class="container">
+                <div class="section__about-us">
+                    <div>
+                        <p class="section__about-us__title main-title">О нас</p>
+                        <p class="section__about-us__description">{{ $main?->about_us['description'] }}</p>
+                        <a href="/" class="primary-btn">
+                            Узнать больше
+                        </a>
+                    </div>
+                    @if($main->about_us['image'])
+                        <div class="section__about-us__image-container">
+                            <img src="/storage/{{ $main?->about_us['image'] }}" alt="">
+                        </div>
+                    @endif
                 </div>
             </div>
-        </div>
-    </section>
-    <div class="banner">
-        <div class="container">
-            <div class="banner__container">
-                <div class="banner__top">
-                    <p class="banner__top__title">Проекты</p>
-                    <p class="banner__top__description">Наши проекты — это результат творческого союза архитекторов с
-                        заказчиком. И поэтому среди наших работ Вы не найдете двух одинаковых зданий. Мы меняем жизнь
-                        людей к лучшему.</p>
-                </div>
-                <div class="banner__bottom">
-                    <div>
-                        <p class="banner__bottom__title">1000+</p>
-                        <p class="banner__bottom__description">Воплощенных проектов</p>
-                    </div>
-                    <div>
-                        <p class="banner__bottom__title">400+</p>
-                        <p class="banner__bottom__description">Довольных клиентов</p>
-                    </div>
-                    <div>
-                        <p class="banner__bottom__title">70</p>
-                        <p class="banner__bottom__description">Отраслевых наград</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        </section>
+    @endif
+    @include('components.projects-banner')
     <section>
         <div class="container">
             <div class="section__objects">
@@ -93,47 +71,39 @@
             </div>
         </div>
     </section>
-    <div class="partners">
-        <div class="container">
-            <p class="main-title">Партнёры</p>
-            <div class="swiper" id="partnersSlider">
+    @if($main->partners)
+        <div class="partners">
+            <div class="container">
+                <p class="main-title">Партнёры</p>
+                <div class="swiper" id="partnersSlider">
+                    <div class="swiper-wrapper">
+                        @foreach($main->partners as $partner)
+                            <div class="swiper-slide">
+                                <img src="/storage/{{ $partner['slide'] }}" alt="">
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+    @if(!empty($main->big_slider))
+        <section id="bigSliderContainer">
+            <div class="swiper" id="bigSlider">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="{{ asset('/assets/img/partner1.png') }}" alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{ asset('/assets/img/partner1.png') }}" alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{ asset('/assets/img/partner1.png') }}" alt="">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{ asset('/assets/img/partner1.png') }}" alt="">
-                    </div>
+                    @foreach($main->big_slider as $slide)
+                        <div class="swiper-slide">
+                            <div class="big-slider__image-container">
+                                <img src="/storage/{{ $slide['slide'] }}" alt="">
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
+                <div class="swiper-button-prev" id="bigSliderPrev"></div>
+                <div class="swiper-button-next" id="bigSliderNext"></div>
             </div>
-        </div>
-    </div>
-    <section id="bigSliderContainer">
-        <div class="swiper" id="bigSlider">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="{{ asset('/assets/img/slider_.png') }}" alt="">
-                </div>
-                <div class="swiper-slide">
-                    <img src="{{ asset('/assets/img/slider_.png') }}" alt="">
-                </div>
-                <div class="swiper-slide">
-                    <img src="{{ asset('/assets/img/slider_.png') }}" alt="">
-                </div>
-                <div class="swiper-slide">
-                    <img src="{{ asset('/assets/img/slider_.png') }}" alt="">
-                </div>
-            </div>
-            <div class="swiper-button-prev" id="bigSliderPrev"></div>
-            <div class="swiper-button-next" id="bigSliderNext"></div>
-        </div>
-    </section>
+        </section>
+    @endif
     <section>
         <div class="container">
             <div class="section__services">
@@ -163,46 +133,5 @@
             </div>
         </div>
     </section>
-    <section>
-        <div class="section__achievements">
-            <div class="container">
-                <p class="main-title">Наши достижения</p>
-            </div>
-            <div class="swiper" id="achievementsSlider">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <p>Наши проекты — это результат творческого союза архитекторов с заказчиком. И поэтому среди наших работ Вы не найдете двух одинаковых зданий. Мы меняем жизнь людей к лучшему.</p>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="achievementsSlide">
-                            <div class="achievementsSlide__image">
-                                <img src="" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="achievementsSlide">
-                            <div class="achievementsSlide__image">
-                                <img src="" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="achievementsSlide">
-                            <div class="achievementsSlide__image">
-                                <img src="" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="achievementsSlide">
-                            <div class="achievementsSlide__image">
-                                <img src="" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    @include('components.achievements')
 @endsection

@@ -38,3 +38,14 @@ const achievementsSlider = new Swiper('#achievementsSlider', {
 })
 
 achievementsSlider.activeIndex = 1
+$(document).ready(function () {
+    $('.object-selector__mini-image-container').on('click', function () {
+        $(this)
+            .closest('.selector')
+            .find('.object-selector__image-container > img')
+            .attr('src', $(this)
+                .find('img')
+                .attr('src')
+            )
+    })
+});
