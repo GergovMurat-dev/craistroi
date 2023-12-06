@@ -44,6 +44,18 @@ class Main extends Page implements HasForms
                             ->label('Задний фон')
                             ->required()
                             ->image(),
+                        FileUpload::make('background_image2')
+                            ->label('Задний фон')
+                            ->required()
+                            ->image(),
+                        FileUpload::make('background_image2')
+                            ->label('Задний фон')
+                            ->required()
+                            ->image(),
+                        FileUpload::make('background_image2')
+                            ->label('Задний фон')
+                            ->required()
+                            ->image(),
                         Grid::make(2)
                             ->schema([
                                 TextInput::make('main_title')
