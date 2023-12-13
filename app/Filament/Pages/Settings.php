@@ -4,8 +4,10 @@ namespace App\Filament\Pages;
 
 use App\Models\Setting;
 use Filament\Actions\Action;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -54,7 +56,21 @@ class Settings extends Page
                                             ->required()
                                     ])
                             ])
-                    ])->collapsed(true)
+                    ])->collapsed(true),
+                Section::make('Наши достижения')
+                    ->schema([
+                        Textarea::make('achievements_title')
+                            ->label('Заголовок')
+                            ->required(),
+                        Repeater::make('achievements')
+                            ->label('Наши достижения')
+                            ->hiddenLabel()
+                            ->schema([
+                                FileUpload::make('image')
+                                    ->label('Изображение')
+                                    ->columnSpan(1)
+                            ])
+                    ])->collapsed(true),
             ])->model(Setting::query()->firstOrNew())
             ->statePath('data');
     }

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('project_count');
             $table->string('friendly_clients');
             $table->string('prizes');
+            $table->string('achievements_title');
+            $table->json('achievements')->nullable();
             $table->timestamps();
         });
     }

@@ -18,9 +18,9 @@
                 <div class="contacts__info">
                     <p class="contacts__title">Адрес</p>
                     <ul>
-                        <li><p>ул. Ленина, 11, Москва</p></li>
+                        <li><p>Ставрополь, улица Осипенко, 8</p></li>
                         <li><a href="mailto:о600777@yandex.ru.">о600777@yandex.ru.</a></li>
-                        <li><a href="tel:+ 7  962 443 39 00">+ 7  962 443 39 00</a></li>
+                        <li><a href="tel:+ 7  962 443 39 00">+ 7 962 443 39 00</a></li>
                     </ul>
                     <div class="contacts-socials">
                         <a href="">
@@ -41,7 +41,9 @@
                     </div>
                 </div>
                 <div class="contacts__map">
-
+                    <iframe
+                        src="https://yandex.ru/map-widget/v1/?um=constructor%3A8bac254d792f7a16cd082943ad875f59e5cf30b6d184c364fa66c46a67b49888&amp;source=constructor"
+                        width="100%" height="100%" frameborder="0"></iframe>
                 </div>
             </div>
         </div>

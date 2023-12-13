@@ -6,7 +6,6 @@ use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -15,7 +14,6 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class Main extends Page implements HasForms
@@ -41,18 +39,6 @@ class Main extends Page implements HasForms
                 Section::make('Главный экран')
                     ->schema([
                         FileUpload::make('background_image')
-                            ->label('Задний фон')
-                            ->required()
-                            ->image(),
-                        FileUpload::make('background_image2')
-                            ->label('Задний фон')
-                            ->required()
-                            ->image(),
-                        FileUpload::make('background_image2')
-                            ->label('Задний фон')
-                            ->required()
-                            ->image(),
-                        FileUpload::make('background_image2')
                             ->label('Задний фон')
                             ->required()
                             ->image(),

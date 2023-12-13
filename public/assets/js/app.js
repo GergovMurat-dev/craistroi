@@ -1,15 +1,10 @@
 const bigSlider = new Swiper('#bigSlider', {
-    loop: true,
     spaceBetween: 60,
-    centeredSlidesBounds: true,
     slidesPerView: "auto",
     centeredSlides: true,
-    effect: "coverflow",
     speed: 600,
-    coverflowEffect: {
-        rotate: 0,
-        slideShadows: false,
-    },
+    autoplay: true,
+    rewind: true,
 
     navigation: {
         nextEl: '#bigSliderNext',
@@ -25,11 +20,10 @@ const partnersSlider = new Swiper('#partnersSlider', {
 })
 
 const achievementsSlider = new Swiper('#achievementsSlider', {
+    loop: true,
+    slidesPerView: 2.5,
     spaceBetween: 30,
-    slidesPerView: 4,
-    centeredSlides: true,
     speed: 600,
-    slideToClickedSlide: true,
 
     navigation: {
         nextEl: '#achievementsSliderNext',
@@ -37,7 +31,6 @@ const achievementsSlider = new Swiper('#achievementsSlider', {
     },
 })
 
-achievementsSlider.activeIndex = 1
 $(document).ready(function () {
     $('.object-selector__mini-image-container').on('click', function () {
         $(this)

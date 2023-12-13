@@ -8,8 +8,8 @@
     <main style="background-image: url('/storage/{{$main->background_image}}')">
         <div class="container">
             <div class="main__container">
-                <p class="main__title">{{ $main->main_title }}</p>
-                <p class="main__description">{{ $main->main_description }}</p>
+                <p class="main__title">{{ $main?->main_title }}</p>
+                <p class="main__description">{{ $main?->main_description }}</p>
                 <button class="primary-btn">
                     Получить консультацию
                 </button>
@@ -19,7 +19,7 @@
             </div>
         </div>
     </main>
-    @if($main->about_us['description'] && $main->about_us['image'])
+    @if($main?->about_us['description'] && $main?->about_us['image'])
         <section>
             <div class="container">
                 <div class="section__about-us">
@@ -30,7 +30,7 @@
                             Узнать больше
                         </a>
                     </div>
-                    @if($main->about_us['image'])
+                    @if($main?->about_us['image'])
                         <div class="section__about-us__image-container">
                             <img src="/storage/{{ $main?->about_us['image'] }}" alt="">
                         </div>
@@ -52,7 +52,7 @@
                                     <div class="object__card-image__more">
                                         <p>Подробнее</p>
                                     </div>
-                                    <img src="" alt="">
+                                    <img src="{{ asset('assets/img/home1.png') }}" alt="">
                                 </div>
                                 <p class="object__cart-title">
                                     Проект {{ $i }}
