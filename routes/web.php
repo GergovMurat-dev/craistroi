@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ObjectsController;
@@ -39,14 +40,20 @@ Route::controller(AboutController::class)->group(function () {
 Route::controller(ObjectsController::class)->group(function () {
     Route::prefix('/objects')->group(function () {
         Route::get('/', 'index');
-        Route::get('/show/{id}', 'single');
+        Route::get('/all', 'all')->name('all-objects');
+        Route::get('/show/{id}', 'single')->name('single-object');
     });
 });
 
 Route::controller(ServicesController::class)->group(function () {
     Route::prefix('/services')->group(function () {
         Route::get('/', 'index');
-        Route::get('/show/{id}', 'single');
+        Route::get('/all', 'all')->name('all-services');
+        Route::get('/show/{id}', 'single')->name('single-service');
         Route::get('/transport', 'transport');
     });
+});
+
+Route::controller(ClientController::class)->group(function () {
+    Route::post('/application');
 });

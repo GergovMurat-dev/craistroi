@@ -2,18 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Project;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
 
 class ObjectsController extends Controller
 {
-
     public function index()
     {
-        return view('pages.objects');
+        $objects = Project::query()->limit(6)->get();
+        return view('pages.objects', ['objects' => $objects]);
     }
 
-    public function single()
+    public function all(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('single.single-object');
+        $objects = Project::all();
+        return view('pages.objects', ['objects' => $objects]);
+    }
+
+    public function single($id)
+    {
+        $object = Project::find($id);
+        if (!$object) {
+            return redirect()->route('home');
+        }
+        return view('single.single-object', ['object' => $object]);
     }
 }

@@ -1,8 +1,13 @@
+@php use App\Models\Service; @endphp
 @extends('template')
 
 @section('title')
     Услуги
 @endsection
+
+@php
+
+@endphp
 
 @section('content')
     <div style="background-image: url('{{ asset('/assets/img/background.png') }}')" class="page-heading">
@@ -18,22 +23,23 @@
         <div class="container">
             <div class="section__services">
                 <div class="section__services-cards">
-                    @for($i = 0; $i < 6; $i++)
-                        <a href="">
+                    @foreach($services as $services)
+                        <a href="{{ route('single-service', $services->id) }}">
                             <div class="service-card">
                                 <div class="service-card__image-container">
-                                    <img src="" alt="">
+                                    <img src="/storage/{{ $services->card_image }}" alt="">
                                 </div>
-                                <p class="service-card__title">Строительство домов</p>
-                                <p class="service-card__description">Здание, построенное в 2018 году, выиграло несколько
-                                    архитектурных.</p>
+                                <p class="service-card__title">{{ $services->title }}</p>
+                                <p class="service-card__description">{{ $services->card_description }}</p>
                             </div>
                         </a>
-                    @endfor
+                    @endforeach
                 </div>
-                <button style="margin: 0 auto" class="primary-btn">
-                    Загрузить ещё
-                </button>
+                @if ($show)
+                    <a href="{{ route('all-services') }}" style="margin: 0 auto" class="primary-btn">
+                        Загрузить ещё
+                    </a>
+                @endif
             </div>
         </div>
     </section>

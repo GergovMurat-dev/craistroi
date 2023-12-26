@@ -8,7 +8,7 @@
     <div style="background-image: url('{{ asset('/assets/img/background.png') }}')" class="page-heading">
         <div class="container">
             <div class="page-heading__container">
-                <p class="page-heading__title">строительство дорог и благоустройство территории</p>
+                <p class="page-heading__title">{{ $service->title }}</p>
                 <p class="page-heading__description">УСЛУГИ</p>
             </div>
         </div>
@@ -16,67 +16,48 @@
     <section>
         <div class="container">
             <div class="service__block">
+                <p class="service__block-hide-text">{{ $service?->description }}</p>
                 <div class="service__block__image-container">
-                    <img src="" alt="">
+                    <img src="/storage/{{ $service->image }}" alt="">
                 </div>
                 <div class="service__block__content">
-                    <p>Здание, построенное в 2018 году, выиграло несколько архитектурных. Здание, построенное
-                        в 2018 году, выиграло несколько архитектурных. Здание, построенное в 2018 году, выиграло
-                        несколько архитектурных. Здание, построенное в 2018 году, выиграло несколько архитектурных. </p>
-                    <button class="primary-btn">
+                    <p>{{ $service?->description }}</p>
+                    <button data-modal="small-form" class="primary-btn open-modal">
                         Заказать услугу
                     </button>
                 </div>
+                <button data-modal="small-form" class="primary-btn open-modal">
+                    Заказать услугу
+                </button>
             </div>
         </div>
     </section>
-    <section id="bigSliderContainer">
-        <div class="container">
-            <p class="main-title">СДАННЫЕ ОБЪЕКТЫ</p>
-        </div>
-        <div class="swiper" id="bigSlider">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="big-slider__image-container">
-                        <img src="{{ asset('/assets/img/slider_.png') }}" alt="">
-                    </div>
-                    <div class="big-slider__content">
-                        <p class="big-slider__content__title">ООО “КОМПАНИЯ СТРОИТЕЛЬСТВО”</p>
-                        <p class="big-slider__content__description">Работы по благоустройству и тому подобное</p>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="big-slider__image-container">
-                        <img src="{{ asset('/assets/img/slider_.png') }}" alt="">
-                    </div>
-                    <div class="big-slider__content">
-                        <p class="big-slider__content__title">ООО “КОМПАНИЯ СТРОИТЕЛЬСТВО”</p>
-                        <p class="big-slider__content__description">Работы по благоустройству и тому подобное</p>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="big-slider__image-container">
-                        <img src="{{ asset('/assets/img/slider_.png') }}" alt="">
-                    </div>
-                    <div class="big-slider__content">
-                        <p class="big-slider__content__title">ООО “КОМПАНИЯ СТРОИТЕЛЬСТВО”</p>
-                        <p class="big-slider__content__description">Работы по благоустройству и тому подобное</p>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="big-slider__image-container">
-                        <img src="{{ asset('/assets/img/slider_.png') }}" alt="">
-                    </div>
-                    <div class="big-slider__content">
-                        <p class="big-slider__content__title">ООО “КОМПАНИЯ СТРОИТЕЛЬСТВО”</p>
-                        <p class="big-slider__content__description">Работы по благоустройству и тому подобное</p>
-                    </div>
-                </div>
+    @if (!empty($service->services))
+        <section id="bigSliderContainer">
+            <div class="container">
+                <p class="main-title">СДАННЫЕ ОБЪЕКТЫ</p>
             </div>
-            <div class="swiper-button-prev" id="bigSliderPrev"></div>
-            <div class="swiper-button-next" id="bigSliderNext"></div>
-        </div>
-    </section>
+            <div class="swiper" id="bigSlider">
+                <div class="swiper-wrapper">
+                    @foreach($service->services as $object)
+                        <div class="swiper-slide">
+                            @if (!empty($object['image']))
+                                <div class="big-slider__image-container">
+                                    <img src="/storage/{{ $object['image'] }}" alt="">
+                                </div>
+                            @endif
+                            <div class="big-slider__content">
+                                <p class="big-slider__content__title">{{ $object['title'] ?? '' }}</p>
+                                <p class="big-slider__content__description">{{ $object['subtitle'] ?? '' }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="swiper-button-prev" id="bigSliderPrev"></div>
+                <div class="swiper-button-next" id="bigSliderNext"></div>
+            </div>
+        </section>
+    @endif
     <div class="advantages">
         <div class="container">
             <div class="advantages__container">
@@ -88,7 +69,8 @@
                         </div>
                         <div class="advantages__card__content">
                             <p class="advantages__card__title">Качество работы</p>
-                            <p class="advantages__card__description">Реконструкция этого огромного по своим масштабам здания
+                            <p class="advantages__card__description">Реконструкция этого огромного по своим масштабам
+                                здания
                                 торгово-развлекательный центр.</p>
                         </div>
                     </div>
@@ -98,7 +80,8 @@
                         </div>
                         <div class="advantages__card__content">
                             <p class="advantages__card__title">Доверие</p>
-                            <p class="advantages__card__description">Реконструкция этого огромного по своим масштабам здания
+                            <p class="advantages__card__description">Реконструкция этого огромного по своим масштабам
+                                здания
                                 торгово-развлекательный центр.</p>
                         </div>
                     </div>
@@ -108,7 +91,8 @@
                         </div>
                         <div class="advantages__card__content">
                             <p class="advantages__card__title">Широкий спектр услуг</p>
-                            <p class="advantages__card__description">Реконструкция этого огромного по своим масштабам здания
+                            <p class="advantages__card__description">Реконструкция этого огромного по своим масштабам
+                                здания
                                 торгово-развлекательный центр.</p>
                         </div>
                     </div>

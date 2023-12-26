@@ -1,3 +1,4 @@
+@php use App\Models\Contact; @endphp
 @extends('template')
 
 @section('title')
@@ -5,6 +6,9 @@
 @endsection
 
 @section('content')
+    @php
+        $contacts = Contact::query()->firstOrNew();
+    @endphp
     <div style="background-image: url('{{ asset('/assets/img/background.png') }}')" class="page-heading">
         <div class="container">
             <div class="page-heading__container">
@@ -12,33 +16,54 @@
             </div>
         </div>
     </div>
-    <section>
+    <section class="section__container">
         <div class="container">
             <div class="section__contacts">
                 <div class="contacts__info">
-                    <p class="contacts__title">Адрес</p>
-                    <ul>
-                        <li><p>Ставрополь, улица Осипенко, 8</p></li>
-                        <li><a href="mailto:о600777@yandex.ru.">о600777@yandex.ru.</a></li>
-                        <li><a href="tel:+ 7  962 443 39 00">+ 7 962 443 39 00</a></li>
-                    </ul>
-                    <div class="contacts-socials">
-                        <a href="">
-                            <div class="contacts-socials__icon">
-                                <img src="{{ asset('/assets/img/whatsapp-contacts.svg') }}" alt="">
-                            </div>
-                        </a>
-                        <a href="">
-                            <div class="contacts-socials__icon">
-                                <img src="{{ asset('/assets/img/telegram.svg') }}" alt="">
-                            </div>
-                        </a>
-                        <a href="">
-                            <div class="contacts-socials__icon">
-                                <img src="{{ asset('/assets/img/vk.svg') }}" alt="">
-                            </div>
-                        </a>
-                    </div>
+                    @if ($contacts?->address ||
+                         $contacts?->email ||
+                         $contacts?->phone ||
+                         $contacts?->whatsapp ||
+                         $contacts?->telegram ||
+                         $contacts?->vk )
+                        @if ($contacts?->address)
+                            <p class="contacts__title">Адрес</p>
+                        @endif
+                        <ul>
+                            @if ($contacts?->address)
+                                <li><p>{{ $contacts?->address }}</p></li>
+                            @endif
+                            @if ($contacts?->email)
+                                <li><a href="mailto:{{ $contacts?->email }}">{{ $contacts?->email }}</a></li>
+                            @endif
+                            @if($contacts?->phone)
+                                <li><a href="tel:{{ $contacts?->phone }}">{{ $contacts?->phone }}</a></li>
+                            @endif
+                        </ul>
+                        <div class="contacts-socials">
+                            @if ($contacts?->whatsapp)
+                                <a href="{{ $contacts?->whatsapp }}">
+                                    <div class="contacts-socials__icon">
+                                        <img src="{{ asset('/assets/img/whatsapp-contacts.svg') }}" alt="">
+                                    </div>
+                                </a>
+                            @endif
+                            @if($contacts?->telegram)
+                                <a href="{{ $contacts?->telegram }}">
+                                    <div class="contacts-socials__icon">
+                                        <img src="{{ asset('/assets/img/telegram.svg') }}" alt="">
+                                    </div>
+                                </a>
+                            @endif
+                            @if($contacts?->vk)
+                                <a href="{{ $contacts?->vk }}">
+                                    <div class="contacts-socials__icon">
+                                        <img src="{{ asset('/assets/img/vk.svg') }}" alt="">
+                                    </div>
+                                </a>
+                            @endif
+                        </div>
+                    @endif
                 </div>
                 <div class="contacts__map">
                     <iframe

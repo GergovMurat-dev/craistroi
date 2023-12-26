@@ -2,7 +2,7 @@
     <div class="container">
         <div class="footer__container">
             <div class="footer__container__menu">
-                <a href="{{ route('home') }}">
+                <a class="footer__logo-link" href="{{ route('home') }}">
                     <div class="footer__logo">
                         <div class="footer__logo-container">
                             <img src="{{ asset('/assets/img/logo.png') }}" alt="">
@@ -31,13 +31,13 @@
                 </div>
             </div>
             <div class="footer__container__invite">
-                <p class="invite__title" >
+                <p class="invite__title">
                     Запишитесь <br> на консультацию
                 </p>
                 <p class="invite__description">
                     Оставьте заявку, и мы свяжемся с вами
                 </p>
-                <button class="primary-btn">
+                <button data-modal="small-form" class="primary-btn open-modal">
                     Заполнить
                 </button>
             </div>
