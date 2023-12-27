@@ -10,7 +10,8 @@ class Service extends Model
     use HasFactory;
 
     protected $casts = [
-        'services' => 'array'
+        'services' => 'array',
+        'work_cards' => 'array'
     ];
 
     protected $fillable = [
@@ -19,6 +20,6 @@ class Service extends Model
         'card_image',
         'card_description',
         'image',
-        'services'
+        'services',
     ];
 }

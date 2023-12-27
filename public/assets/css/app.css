@@ -6,6 +6,8 @@
     box-sizing: border-box;
     font-family: "Inter", sans-serif;
     text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
 }
 
 :root {
@@ -811,20 +813,20 @@ section {
 /*                }*/
 /*            }*/
 
-            /*.big-slider__content {*/
-            /*    text-align: center;*/
+/*.big-slider__content {*/
+/*    text-align: center;*/
 
-            /*    .big-slider__content__title {*/
-            /*        font-size: 1.5625rem;*/
-            /*        font-weight: 500;*/
-            /*    }*/
+/*    .big-slider__content__title {*/
+/*        font-size: 1.5625rem;*/
+/*        font-weight: 500;*/
+/*    }*/
 
-            /*    .big-slider__content__description {*/
-            /*        font-size: 1.125rem;*/
-            /*        font-weight: 300;*/
-            /*        color: rgba(36, 36, 36, 0.8);*/
-            /*    }*/
-            /*}*/
+/*    .big-slider__content__description {*/
+/*        font-size: 1.125rem;*/
+/*        font-weight: 300;*/
+/*        color: rgba(36, 36, 36, 0.8);*/
+/*    }*/
+/*}*/
 /*        }*/
 /*    }*/
 /*}*/

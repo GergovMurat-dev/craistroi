@@ -58,46 +58,29 @@
             </div>
         </section>
     @endif
-    <div class="advantages">
-        <div class="container">
-            <div class="advantages__container">
-                <p class="main-title">КАК МЫ РАБОТАЕМ</p>
-                <div class="advantages__wrapper">
-                    <div class="advantages__card">
-                        <div class="advantages__card__icon-container">
-                            <img src="{{ asset('/assets/img/advantages.svg') }}" alt="">
-                        </div>
-                        <div class="advantages__card__content">
-                            <p class="advantages__card__title">Качество работы</p>
-                            <p class="advantages__card__description">Реконструкция этого огромного по своим масштабам
-                                здания
-                                торгово-развлекательный центр.</p>
-                        </div>
-                    </div>
-                    <div class="advantages__card">
-                        <div class="advantages__card__icon-container">
-                            <img src="{{ asset('/assets/img/advantages.svg') }}" alt="">
-                        </div>
-                        <div class="advantages__card__content">
-                            <p class="advantages__card__title">Доверие</p>
-                            <p class="advantages__card__description">Реконструкция этого огромного по своим масштабам
-                                здания
-                                торгово-развлекательный центр.</p>
-                        </div>
-                    </div>
-                    <div class="advantages__card">
-                        <div class="advantages__card__icon-container">
-                            <img src="{{ asset('/assets/img/advantages.svg') }}" alt="">
-                        </div>
-                        <div class="advantages__card__content">
-                            <p class="advantages__card__title">Широкий спектр услуг</p>
-                            <p class="advantages__card__description">Реконструкция этого огромного по своим масштабам
-                                здания
-                                торгово-развлекательный центр.</p>
-                        </div>
+    @php
+        $cards = \App\Models\Setting::query()->firstOrNew()->work_cards;
+    @endphp
+    @if (!empty($cards))
+        <div class="advantages">
+            <div class="container">
+                <div class="advantages__container">
+                    <p class="main-title">КАК МЫ РАБОТАЕМ</p>
+                    <div class="advantages__wrapper">
+                        @foreach($cards as $card)
+                            <div class="advantages__card">
+                                <div class="advantages__card__icon-container">
+                                    <img src="{{ asset('/assets/img/advantages.svg') }}" alt="">
+                                </div>
+                                <div class="advantages__card__content">
+                                    <p class="advantages__card__title">{{ $card['card_title'] }}</p>
+                                    <p class="advantages__card__description">{{ $card['card_description'] }}</p>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 @endsection

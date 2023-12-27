@@ -14,18 +14,29 @@
                     <div class="menu__section">
                         <p class="menu__title">Навигация</p>
                         <ul>
-                            <li><a href="">Услуги</a></li>
-                            <li><a href="">Наши объекты</a></li>
-                            <li><a href="">О нас</a></li>
-                            <li><a href="">Контакты</a></li>
+                            <li><a href="/services">Услуги</a></li>
+                            <li><a href="/objects">Наши объекты</a></li>
+                            <li><a href="/about">О нас</a></li>
+                            <li><a href="/contacts">Контакты</a></li>
                         </ul>
                     </div>
+                    @php
+                        use App\Models\Contact;
+
+                        $contacts = Contact::query()->firstOrNew();
+                    @endphp
                     <div class="menu__section">
                         <p class="menu__title">Соцсети</p>
                         <ul>
-                            <li><a href="">Telegram</a></li>
-                            <li><a href="">Vkontakte</a></li>
-                            <li><a href="">Email</a></li>
+                            @if($contacts?->telegram)
+                                <li><a href="{{ $contacts?->telegram }}">Telegram</a></li>
+                            @endif
+                            @if($contacts?->vk)
+                                <li><a href="{{ $contacts?->vk }}">Vkontakte</a></li>
+                            @endif
+                            @if($contacts?->email)
+                                <li><a href="mailto:{{ $contacts?->email }}">Email</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>

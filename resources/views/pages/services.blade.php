@@ -5,10 +5,6 @@
     Услуги
 @endsection
 
-@php
-
-@endphp
-
 @section('content')
     <div style="background-image: url('{{ asset('/assets/img/background.png') }}')" class="page-heading">
         <div class="container">
@@ -43,39 +39,35 @@
             </div>
         </div>
     </section>
-    <div class="advantages">
-        <div class="container">
-            <div class="advantages__container">
-                <p class="main-title">НАШИ ПРЕИМУЩЕСТВА</p>
-                <div class="advantages__wrapper">
-                    <p>В нашем портфолио больше тысячи реализованных проектов. Мы поможем Вам реализовать идею, при этом
-                        учтем все требования и пожелания. Вы доверите проект компетентным специалистам.</p>
-                    <div class="advantages__card">
-                        <div class="advantages__card__icon-container">
-                            <img src="{{ asset('/assets/img/advantages.svg') }}" alt="">
-                        </div>
-                        <p class="advantages__card__title">Безопасность</p>
-                    </div>
-                    <div class="advantages__card">
-                        <div class="advantages__card__icon-container">
-                            <img src="{{ asset('/assets/img/advantages.svg') }}" alt="">
-                        </div>
-                        <p class="advantages__card__title">Качество работы</p>
-                    </div>
-                    <div class="advantages__card">
-                        <div class="advantages__card__icon-container">
-                            <img src="{{ asset('/assets/img/advantages.svg') }}" alt="">
-                        </div>
-                        <p class="advantages__card__title">Доверие</p>
-                    </div>
-                    <div class="advantages__card">
-                        <div class="advantages__card__icon-container">
-                            <img src="{{ asset('/assets/img/advantages.svg') }}" alt="">
-                        </div>
-                        <p class="advantages__card__title">Широкий спектр услуг</p>
+    @php
+        $title = \App\Models\Setting::query()->firstOrNew()?->advantages_title;
+        $cards = \App\Models\Setting::query()->firstOrNew()?->card;
+    @endphp
+
+    @if($title || $cards)
+        <div class="advantages">
+            <div class="container">
+                <div class="advantages__container">
+                    <p class="main-title">НАШИ ПРЕИМУЩЕСТВА</p>
+                    <div class="advantages__wrapper">
+                        @if($title)
+                            <p>{{ $title }}</p>
+                        @endif
+                        @if(!empty($cards))
+                            @foreach($cards as $card)
+                                <div class="advantages__card">
+                                    <div class="advantages__card__icon-container">
+                                        <img src="{{ asset('/assets/img/advantages.svg') }}" alt="">
+                                    </div>
+                                    @if(!empty($card['card_title']))
+                                        <p class="advantages__card__title">{{ $card['card_title'] }}</p>
+                                    @endif
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 @endsection

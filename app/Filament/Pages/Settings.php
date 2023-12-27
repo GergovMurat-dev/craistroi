@@ -71,6 +71,30 @@ class Settings extends Page
                                     ->columnSpan(1)
                             ])
                     ])->collapsed(true),
+                Section::make('Наши преимущества')
+                    ->schema([
+                        Textarea::make('advantages_title')
+                            ->label('Заголовок блока'),
+                        Repeater::make('card')
+                            ->label('Карточки')
+                            ->schema([
+                                TextInput::make('card_title')
+                                    ->label('Заголовок'),
+                            ])
+                            ->maxItems(4)
+                    ])->collapsed(true),
+                Section::make('Как мы работаем')
+                    ->schema([
+                        Repeater::make('work_cards')
+                            ->label('Карточки')
+                            ->schema([
+                                TextInput::make('card_title')
+                                    ->label('Заголовок'),
+                                TextInput::make('card_description')
+                                    ->label('Описание')
+                            ])
+                            ->maxItems(3)
+                    ])
             ])->model(Setting::query()->firstOrNew())
             ->statePath('data');
     }
