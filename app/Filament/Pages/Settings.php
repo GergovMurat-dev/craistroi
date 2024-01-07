@@ -69,7 +69,7 @@ class Settings extends Page
                                 FileUpload::make('image')
                                     ->label('Изображение')
                                     ->columnSpan(1)
-                            ])
+                            ])->minItems(3)
                     ])->collapsed(true),
                 Section::make('Наши преимущества')
                     ->schema([
@@ -94,7 +94,23 @@ class Settings extends Page
                                     ->label('Описание')
                             ])
                             ->maxItems(3)
-                    ])
+                    ])->collapsed(true),
+                Section::make('СЕО продвижение')
+                    ->schema([
+                        TextInput::make('seo_title')
+                            ->label('Заголовки'),
+                        Textarea::make('seo_description')
+                            ->label('Описание')
+                    ])->collapsed(true),
+                Section::make('Карточка услуг грузоперевозок')
+                    ->schema([
+                        TextInput::make('transport_title')
+                            ->label('Заголовок услуги'),
+                        Textarea::make('transport_description')
+                            ->label('Описание услуги'),
+                        FileUpload::make('transport_image')
+                            ->label('Изображение услуги')
+                    ])->collapsed(true)
             ])->model(Setting::query()->firstOrNew())
             ->statePath('data');
     }

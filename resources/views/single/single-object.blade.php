@@ -21,37 +21,58 @@
             </div>
         </section>
     @endif
+
     @if (!empty($object->before && $object->after))
         <div class="object">
             <div class="container">
-                <div class="object-selector">
-                    <div>
+                <div class="object__sliders">
+                    <div class="object-slider">
                         <p class="main-title">До</p>
-                        <div class="selector">
-                            <div class="object-selector__image-container">
-                                <img src="/storage/{{ $object->before[0] }}" alt="">
+                        <div class="slider-heading">
+                            <div class="swiper sliderBefore">
+                                <div class="swiper-wrapper">
+                                    @foreach($object->before as $image)
+                                        <div class="swiper-slide">
+                                            <img src="/storage/{{ $image }}"/>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
-                            <div class="object-selector__mini-images-container">
-                                @foreach($object->before as $key => $image)
-                                    <div data-position="{{ $key }}" class="object-selector__mini-image-container">
-                                        <img src="/storage/{{ $image }}" alt="">
-                                    </div>
-                                @endforeach
+                        </div>
+                        <div class="slider-thumbs">
+                            <div class="swiper thumbBefore">
+                                <div class="swiper-wrapper">
+                                    @foreach($object->before as $image)
+                                        <div class="swiper-slide">
+                                            <img src="/storage/{{ $image }}"/>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div class="object-slider">
                         <p class="main-title">После</p>
-                        <div class="selector">
-                            <div class="object-selector__image-container">
-                                <img src="/storage/{{ $object->after[0] }}" alt="">
+                        <div class="slider-heading">
+                            <div class="swiper sliderAfter">
+                                <div class="swiper-wrapper">
+                                    @foreach($object->after as $image)
+                                        <div class="swiper-slide">
+                                            <img src="/storage/{{ $image }}"/>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
-                            <div class="object-selector__mini-images-container">
-                                @foreach($object->after as $key => $image)
-                                    <div data-position="{{ $key }}" class="object-selector__mini-image-container">
-                                        <img src="/storage/{{ $image }}" alt="">
-                                    </div>
-                                @endforeach
+                        </div>
+                        <div class="slider-thumbs">
+                            <div class="swiper thumbAfter">
+                                <div class="swiper-wrapper">
+                                    @foreach($object->after as $image)
+                                        <div class="swiper-slide">
+                                            <img src="/storage/{{ $image }}"/>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>

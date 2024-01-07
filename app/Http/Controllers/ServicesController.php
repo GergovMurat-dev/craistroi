@@ -3,25 +3,39 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Models\Setting;
+use App\Models\TransportService;
 use Illuminate\Http\Request;
 
 class ServicesController extends Controller
 {
     public function index()
     {
-        $services = Service::query()->limit(6)->get();
+        $setting = Setting::query()->firstOrNew();
+        $title = $setting?->advantages_title;
+        $cards = $setting?->card;
+        $services = Service::query()->limit(5)->get();
         return view('pages.services', [
             'services' => $services,
-            'show' => true
+            'show' => true,
+            'setting' => $setting,
+            'title' => $title,
+            'cards' => $cards
         ]);
     }
 
     public function all()
     {
+        $setting = Setting::query()->firstOrNew();
+        $title = $setting?->advantages_title;
+        $cards = $setting?->card;
         $services = Service::all();
         return view('pages.services', [
             'services' => $services,
-            'show' => false
+            'show' => false,
+            'setting' => $setting,
+            'title' => $title,
+            'cards' => $cards
         ]);
     }
 
@@ -36,6 +50,7 @@ class ServicesController extends Controller
 
     public function transport()
     {
-        return view('single.services-transport');
+        $transports = TransportService::all();
+        return view('single.services-transport', ['transports' => $transports]);
     }
 }

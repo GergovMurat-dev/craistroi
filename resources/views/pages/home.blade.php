@@ -5,11 +5,6 @@
 @endsection
 
 @section('content')
-    @php
-        $phone = \App\Models\Contact::query()->firstOrNew()->whatsapp;
-        $services = \App\Models\Service::query()->limit(3)->get();
-        $objects = \App\Models\Project::query()->limit(6)->get();
-    @endphp
     @if ($phone)
         <a class="main__whatsapp" href="{{ $phone }}">
             <img src="{{ asset('/assets/img/header__whatsapp.png') }}" alt="">
@@ -82,18 +77,29 @@
         </div>
     </section>
     @if($main->partners)
+        <div class="container">
+            <p class="main-title partners-main-title">Партнёры</p>
+        </div>
         <div class="partners">
             <div class="container">
-                <p class="main-title">Партнёры</p>
-                <div class="swiper" id="partnersSlider">
-                    <div class="swiper-wrapper">
-                        @foreach($main->partners as $partner)
-                            <div class="swiper-slide">
-                                <img src="/storage/{{ $partner['slide'] }}" alt="">
-                            </div>
-                        @endforeach
+                <section class="splide" id="partners" aria-label="Splide Basic HTML Example">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            @foreach($main->partners as $partner)
+                                <li class="splide__slide">
+                                    <div class="partner-slide">
+                                        <img src="/storage/{{ $partner['slide'] }}" alt="">
+                                    </div>
+                                </li>
+                                <li class="splide__slide">
+                                    <div class="partner-slide">
+                                        <img src="/storage/{{ $partner['slide'] }}" alt="">
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
-                </div>
+                </section>
             </div>
         </div>
     @endif

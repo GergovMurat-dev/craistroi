@@ -22,6 +22,11 @@ class Setting extends Model
         'advantages_title',
         'card',
         'work_cards',
+        'seo_title',
+        'seo_description',
+        'transport_title',
+        'transport_description',
+        'transport_image',
     ];
 
 }

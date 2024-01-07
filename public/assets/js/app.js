@@ -5,58 +5,7 @@ $('.header__menu-burger').on('click', function () {
 $('.menu__burger-close').on('click', function () {
     $('.menu__burger').removeClass('active')
 })
-$(window).on('scroll', function () {
-    if ($(window).scrollTop() > 50) {
-        $('header').addClass('active')
-    } else {
-        $('header').removeClass('active')
-    }
-})
 
-const bigSlider = new Swiper('#bigSlider', {
-    slidesPerView: 1.3,
-    centeredSlides: true,
-    centerSlideBounds: true,
-    speed: 600,
-    autoplay: true,
-    rewind: true,
-    breakpoints: {
-        1060: {
-            spaceBetween: 60
-        },
-    },
-
-    navigation: {
-        nextEl: '#bigSliderNext',
-        prevEl: '#bigSliderPrev',
-    },
-})
-
-const partnersSlider = new Swiper('#partnersSlider', {
-    loop: true,
-    spaceBetween: 30,
-    slidesPerView: 3,
-    autoplay: true
-})
-
-const achievementsSlider = new Swiper('#achievementsSlider', {
-    loop: true,
-    spaceBetween: 30,
-    speed: 600,
-    breakpoints: {
-        300: {
-            slidesPerView: 1.5,
-        },
-        600: {
-            slidesPerView: 2.5,
-        }
-    },
-
-    navigation: {
-        nextEl: '#achievementsSliderNext',
-        prevEl: '#achievementsSliderPrev',
-    },
-})
 
 $('.__form').on('submit', function () {
     let result = true
@@ -87,15 +36,54 @@ $('.__form').on('submit', function () {
 
 
 $(document).ready(function () {
-    $('.object-selector__mini-image-container').on('click', function () {
-        $(this)
-            .closest('.selector')
-            .find('.object-selector__image-container > img')
-            .attr('src', $(this)
-                .find('img')
-                .attr('src')
-            )
+    let before = new Swiper('.sliderBefore')
+
+    let after = new Swiper('.sliderAfter', {
+        controller: {
+            control: before
+        }
     })
+
+    before.controller.control = after
+
+    let beforeThumb = new Swiper('.thumbBefore', {
+        slidesPerView: 'auto',
+        watchSlidesVisibility: true,
+        watchSlidesProgress: true,
+        spaceBetween: 15,
+        on: {
+            click: function() {
+                var clickedIndex = this.clickedIndex;
+                before.slideTo(clickedIndex);
+            }
+        }
+    })
+    let afterThumb = new Swiper('.thumbAfter', {
+        slidesPerView: 'auto',
+        watchSlidesVisibility: true,
+        watchSlidesProgress: true,
+        spaceBetween: 15,
+        on: {
+            click: function() {
+                var clickedIndex = this.clickedIndex;
+                after.slideTo(clickedIndex);
+            }
+        }
+    })
+
+    // Функция для управления слайдерами с клавиатуры
+    function handleKeyboardEvent(e) {
+        if (e.key === 'ArrowLeft') {
+            before.slidePrev();
+            after.slidePrev();
+        } else if (e.key === 'ArrowRight') {
+            before.slideNext();
+            after.slideNext();
+        }
+    }
+
+// Добавление обработчика событий для клавиатурных нажатий
+    document.addEventListener('keydown', handleKeyboardEvent);
 
     $(".checkbox").on('click', function () {
         $(this).toggleClass('active')
@@ -124,67 +112,75 @@ $(document).ready(function () {
         $(this).removeClass('active')
         $('body').removeClass('modal-active')
     })
-
-    let count = 0;
-
-    $(document).keydown(function (e) {
-        // Проверяем, какая клавиша была нажата
-        switch (e.which) {
-            case 37: // левая клавиша
-                changeSlide('left');
-                break;
-            case 39: // правая клавиша
-                changeSlide('right');
-                break;
-            default:
-                return; // выходим, если это не стрелки
-        }
-        e.preventDefault(); // предотвращаем дефолтное поведение при нажатии клавиши
-    });
-
-    function changeSlide(state) {
-        let maxCount = 0;
-        $('.object-selector__mini-images-container').each(function () {
-            // Подсчитываем количество элементов в текущем контейнере
-            let count = $(this).children('.object-selector__mini-image-container').length;
-            // Обновляем maxCount, если текущий count больше
-            if (count > maxCount) {
-                maxCount = count;
-            }
-        });
-        
-        switch (state) {
-            case 'left':
-                count > 0 ? count-- : count
-                break;
-            case 'right':
-                count < maxCount - 1 ? count++ : count
-                break;
-            default:
-                0
-        }
-
-        let slides = $('.object-selector__mini-images-container')
-        slides.each(function () {
-            let image = $(this).find(`div[data-position=${count}] > img`).attr('src')
-            $(this)
-                .closest('.selector')
-                .find('.object-selector__image-container > img')
-                .attr('src', image);
-        })
-    }
-
-
-    $('.object-selector__mini-image-container').on('click', function () {
-        let position = $(this).data('position');
-        $('.selector').each(function () {
-            let image = $(this)
-                .find(`div[data-position=${position}] > img`)
-                .attr('src')
-            $(this)
-                .find('.object-selector__image-container > img')
-                .attr('src', image)
-        })
-    });
-
 });
+
+$(window).on('scroll', function () {
+    if ($(window).scrollTop() > 50) {
+        $('header').addClass('active')
+    } else {
+        $('header').removeClass('active')
+    }
+})
+
+const bigSlider = new Swiper('#bigSlider', {
+    centeredSlides: true,
+    centerSlideBounds: true,
+    speed: 600,
+    autoplay: true,
+    rewind: true,
+    breakpoints: {
+        1200: {
+            spaceBetween: 60,
+            slidesPerView: 1.3
+        },
+        300: {
+            slidesPerView: 1,
+            arrow: false
+        }
+    },
+
+    navigation: {
+        nextEl: '#bigSliderNext',
+        prevEl: '#bigSliderPrev',
+    },
+})
+
+const achievementsSlider = new Swiper('#achievementsSlider', {
+    loop: true,
+    spaceBetween: 30,
+    speed: 600,
+    breakpoints: {
+        300: {
+            slidesPerView: 1.5,
+        },
+        600: {
+            slidesPerView: 2.5,
+        }
+    },
+
+    navigation: {
+        nextEl: '#achievementsSliderNext',
+        prevEl: '#achievementsSliderPrev',
+    },
+})
+
+
+let partner = new Splide('#partners', {
+    perPage: 3,
+    type: 'loop',
+    gap: '1.87rem',
+    arrows: false,
+    autoplay: true,
+    interval: 1500,
+    speed: 1500,
+    pagination: false,
+    breakpoints: {
+        970: {
+            perPage: 2
+        }
+    }
+});
+
+partner.mount()
+
+

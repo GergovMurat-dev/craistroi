@@ -1,4 +1,4 @@
-@php use App\Models\Service; @endphp
+@php use App\Models\Setting; @endphp
 @extends('template')
 
 @section('title')
@@ -19,14 +19,25 @@
         <div class="container">
             <div class="section__services">
                 <div class="section__services-cards">
-                    @foreach($services as $services)
-                        <a href="{{ route('single-service', $services->id) }}">
+                    @if($setting?->transport_image && $setting?->transport_title && $setting->transport_description)
+                        <a href="/services/transport">
                             <div class="service-card">
                                 <div class="service-card__image-container">
-                                    <img src="/storage/{{ $services->card_image }}" alt="">
+                                    <img src="/storage/{{ $setting->transport_image }}" alt="">
                                 </div>
-                                <p class="service-card__title">{{ $services->title }}</p>
-                                <p class="service-card__description">{{ $services->card_description }}</p>
+                                <p class="service-card__title">{{ $setting->transport_title }}</p>
+                                <p class="service-card__description">{{ $setting->transport_description }}</p>
+                            </div>
+                        </a>
+                    @endif
+                    @foreach($services as $service)
+                        <a href="{{ route('single-service', $service->id) }}">
+                            <div class="service-card">
+                                <div class="service-card__image-container">
+                                    <img src="/storage/{{ $service->card_image }}" alt="">
+                                </div>
+                                <p class="service-card__title">{{ $service->title }}</p>
+                                <p class="service-card__description">{{ $service->card_description }}</p>
                             </div>
                         </a>
                     @endforeach
@@ -39,10 +50,7 @@
             </div>
         </div>
     </section>
-    @php
-        $title = \App\Models\Setting::query()->firstOrNew()?->advantages_title;
-        $cards = \App\Models\Setting::query()->firstOrNew()?->card;
-    @endphp
+
 
     @if($title || $cards)
         <div class="advantages">
