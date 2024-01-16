@@ -88,7 +88,8 @@
     </div>
 </header>
 <div class="modal">
-    <form class="__form" action="" id="big-form">
+    <form class="__form" action="{{ route('applications.store') }}" method="post" id="big-form">
+        @csrf
         <div class="form-close-btn">
             <svg viewPort="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <line x1="1" y1="15"
@@ -106,7 +107,7 @@
             <input type="text" name="name" placeholder="Имя">
             <input type="number" name="phone" placeholder="Номер телефона">
             <input type="email" name="email" placeholder="Почта">
-            <textarea name="comment" rows="8" placeholder="Комментарий"></textarea>
+            <textarea name="message" rows="8" placeholder="Комментарий"></textarea>
         </div>
         <button type="submit" class="primary-btn">
             Отправить
@@ -123,7 +124,8 @@
         </div>
     </form>
 
-    <form class="__form" action="" id="small-form">
+    <form class="__form" action="{{ route('applications.store') }}" method="post" id="small-form">
+        @csrf
         <div class="form-close-btn">
             <svg viewPort="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <line x1="1" y1="15"

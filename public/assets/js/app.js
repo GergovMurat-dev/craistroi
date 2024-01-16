@@ -36,15 +36,11 @@ $('.__form').on('submit', function () {
 
 
 $(document).ready(function () {
+    Fancybox.bind("[data-fancybox]");
+
     let before = new Swiper('.sliderBefore')
 
-    let after = new Swiper('.sliderAfter', {
-        controller: {
-            control: before
-        }
-    })
-
-    before.controller.control = after
+    let after = new Swiper('.sliderAfter')
 
     let beforeThumb = new Swiper('.thumbBefore', {
         slidesPerView: 'auto',
@@ -52,7 +48,7 @@ $(document).ready(function () {
         watchSlidesProgress: true,
         spaceBetween: 15,
         on: {
-            click: function() {
+            click: function () {
                 var clickedIndex = this.clickedIndex;
                 before.slideTo(clickedIndex);
             }
@@ -64,23 +60,12 @@ $(document).ready(function () {
         watchSlidesProgress: true,
         spaceBetween: 15,
         on: {
-            click: function() {
+            click: function () {
                 var clickedIndex = this.clickedIndex;
                 after.slideTo(clickedIndex);
             }
         }
     })
-
-    // Функция для управления слайдерами с клавиатуры
-    function handleKeyboardEvent(e) {
-        if (e.key === 'ArrowLeft') {
-            before.slidePrev();
-            after.slidePrev();
-        } else if (e.key === 'ArrowRight') {
-            before.slideNext();
-            after.slideNext();
-        }
-    }
 
 // Добавление обработчика событий для клавиатурных нажатий
     document.addEventListener('keydown', handleKeyboardEvent);

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\HomeController;
@@ -54,6 +55,4 @@ Route::controller(ServicesController::class)->group(function () {
     });
 });
 
-Route::controller(ClientController::class)->group(function () {
-    Route::post('/application');
-});
+Route::post('/applications', [ApplicationController::class, 'store'])->name('applications.store');

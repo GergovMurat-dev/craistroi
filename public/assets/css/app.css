@@ -67,6 +67,10 @@ body {
     }
 }
 
+.fancybox__container {
+    z-index: 10000000 !important;
+}
+
 .menu__burger {
     top: 0;
     background: var(--light-dark);

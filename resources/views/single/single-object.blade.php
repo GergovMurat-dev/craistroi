@@ -32,9 +32,10 @@
                             <div class="swiper sliderBefore">
                                 <div class="swiper-wrapper">
                                     @foreach($object->before as $image)
-                                        <div class="swiper-slide">
+                                        <a href="/storage/{{ $image }}" data-fancybox="gallery-before"
+                                           class="swiper-slide">
                                             <img src="/storage/{{ $image }}"/>
-                                        </div>
+                                        </a>
                                     @endforeach
                                 </div>
                             </div>
@@ -57,9 +58,9 @@
                             <div class="swiper sliderAfter">
                                 <div class="swiper-wrapper">
                                     @foreach($object->after as $image)
-                                        <div class="swiper-slide">
+                                        <a href="/storage/{{ $image }}" data-fancybox="gallery-after" class="swiper-slide">
                                             <img src="/storage/{{ $image }}"/>
-                                        </div>
+                                        </a>
                                     @endforeach
                                 </div>
                             </div>
