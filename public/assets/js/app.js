@@ -68,8 +68,6 @@ $(document).ready(function () {
     })
 
 // Добавление обработчика событий для клавиатурных нажатий
-    document.addEventListener('keydown', handleKeyboardEvent);
-
     $(".checkbox").on('click', function () {
         $(this).toggleClass('active')
     })
