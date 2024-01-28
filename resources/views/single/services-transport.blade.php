@@ -1,3 +1,4 @@
+@php use App\Models\Setting; @endphp
 @extends('template')
 
 @section('title')
@@ -5,10 +6,13 @@
 @endsection
 
 @section('content')
+    @php
+        $setting = Setting::query()->first();
+    @endphp
     <div style="background-image: url('{{ asset('/assets/img/background.png') }}')" class="page-heading">
         <div class="container">
             <div class="page-heading__container">
-                <p class="page-heading__title">грузоперевозки сыпучих материалов</p>
+                <p class="page-heading__title">{{ $setting->transport_title }}</p>
                 <p class="page-heading__description">УСЛУГИ</p>
             </div>
         </div>

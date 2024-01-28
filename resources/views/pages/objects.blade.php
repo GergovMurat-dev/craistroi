@@ -1,3 +1,4 @@
+@php use App\Models\Project; @endphp
 @extends('template')
 
 @section('title')
@@ -5,12 +6,14 @@
 @endsection
 
 @section('content')
+    @php
+        $page_description = \App\Models\Setting::query()->select('page_descriptions')->first()->page_descriptions['object']
+    @endphp
     <div style="background-image: url('{{ asset('/assets/img/background.png') }}')" class="page-heading">
         <div class="container">
             <div class="page-heading__container">
                 <p class="page-heading__title">НАШИ ОБЪЕКТЫ</p>
-                <p class="page-heading__description">Реконструкция этого огромного по своим масштабам здания превратила
-                    его в новый современный торгово-развлекательный центр.</p>
+                <p class="page-heading__description">{{ $page_description ?? '' }}</p>
             </div>
         </div>
     </div>
@@ -37,9 +40,11 @@
                         </a>
                     @endforeach
                 </div>
-                <a href="{{ route('all-objects') }}" class="section__show-btn primary-btn">
-                    Посмотреть ещё
-                </a>
+                @if($show && Project::query()->count() > 6)
+                    <a href="{{ route('all-objects') }}" class="section__show-btn primary-btn">
+                        Посмотреть ещё
+                    </a>
+                @endif
             </div>
         </div>
     </section>

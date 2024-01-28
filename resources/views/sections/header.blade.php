@@ -62,7 +62,7 @@
                     <div class="header__logo-image-container">
                         <img src="{{ asset('/assets/img/logo.png') }}" alt="">
                     </div>
-                    <p class="header__logo-subtext">крайстрой</p>
+                    <p class="header__logo-subtext">КРАЙСТРОЙ</p>
                 </div>
             </a>
             <div class="header__menu">
@@ -105,7 +105,7 @@
         <p class="form__title">Заполните форму</p>
         <div class="form__input-wrapper">
             <input type="text" name="name" placeholder="Имя">
-            <input type="number" name="phone" placeholder="Номер телефона">
+            <input type="number" name="phone" id="phone2" placeholder="Номер телефона">
             <input type="email" name="email" placeholder="Почта">
             <textarea name="message" rows="8" placeholder="Комментарий"></textarea>
         </div>
@@ -141,7 +141,7 @@
         <p class="form__title">Заполните форму</p>
         <div class="form__input-wrapper">
             <input type="text" name="name" placeholder="Имя">
-            <input type="number" name="phone" placeholder="Номер телефона">
+            <input type="number" name="phone" id="phone1" placeholder="Номер телефона">
         </div>
         <button type="submit" class="primary-btn">
             Отправить

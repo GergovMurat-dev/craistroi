@@ -22,11 +22,11 @@
                 </div>
                 <div class="service__block__content">
                     <p>{{ $service?->description }}</p>
-                    <button data-modal="small-form" class="primary-btn open-modal">
+                    <button data-modal="big-form" class="primary-btn open-modal">
                         Заказать услугу
                     </button>
                 </div>
-                <button data-modal="small-form" class="primary-btn open-modal">
+                <button data-modal="big-form" class="primary-btn open-modal">
                     Заказать услугу
                 </button>
             </div>

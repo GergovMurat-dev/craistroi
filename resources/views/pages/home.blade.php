@@ -125,11 +125,19 @@
             <div class="section__services">
                 <div class="section__services-heading">
                     <p class="main-title">Услуги</p>
-                    <p class="section__services-description">Наши проекты — это результат творческого союза архитекторов
-                        с заказчиком. И поэтому
-                        среди наших работ Вы не найдете двух одинаковых зданий. Мы меняем жизнь людей к лучшему.</p>
-                </div>
+                    <p class="section__services-description">{{ $main?->service_description ?? '' }}</div>
                 <div class="section__services-cards">
+                    @if($setting?->transport_image && $setting?->transport_title && $setting->transport_description)
+                        <a href="/services/transport">
+                            <div class="service-card">
+                                <div class="service-card__image-container">
+                                    <img src="/storage/{{ $setting->transport_image }}" alt="">
+                                </div>
+                                <p class="service-card__title">{{ $setting->transport_title }}</p>
+                                <p class="service-card__description">{{ $setting->transport_description }}</p>
+                            </div>
+                        </a>
+                    @endif
                     @foreach($services as $service)
                         <a href="{{ route('single-service', $service->id) }}">
                             <div class="service-card">

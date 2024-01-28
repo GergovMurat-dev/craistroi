@@ -35,6 +35,13 @@ class Settings extends Page
     {
         return $form
             ->schema([
+                Section::make('Описание страниц')
+                    ->schema([
+                        Textarea::make('page_descriptions.object')
+                            ->label('Описание страницы объекты'),
+                        Textarea::make('page_descriptions.services')
+                            ->label('Описание страницы услуги'),
+                    ]),
                 Section::make('Баннер проектов')
                     ->schema([
                         Grid::make(2)

@@ -10,9 +10,11 @@ class Setting extends Model
         'achievements' => 'array',
         'card' => 'array',
         'work_cards' => 'array',
+        'page_descriptions' => 'array'
     ];
 
     protected $fillable = [
+        'page_descriptions',
         'banner_description',
         'project_count',
         'friendly_clients',

@@ -12,13 +12,19 @@ class ObjectsController extends Controller
     public function index()
     {
         $objects = Project::query()->limit(6)->get();
-        return view('pages.objects', ['objects' => $objects]);
+        return view('pages.objects', [
+            'objects' => $objects,
+            'show' => true
+        ]);
     }
 
     public function all(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $objects = Project::all();
-        return view('pages.objects', ['objects' => $objects]);
+        return view('pages.objects', [
+            'objects' => $objects,
+            'show' => false
+        ]);
     }
 
     public function single($id)

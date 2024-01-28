@@ -9,10 +9,7 @@
         </div>
         <div class="achievements__container">
             <div class="achievements__slider">
-                <div class="achievements__description">
-                    Наши проекты — это результат творческого союза архитекторов с заказчиком. И поэтому среди наших
-                    работ Вы не найдете двух одинаковых зданий. Мы меняем жизнь людей к лучшему.
-                </div>
+                <div class="achievements__description">{{ $settings?->achievements_title }}</div>
                 <div class="swiper" id="achievementsSlider">
                     <div class="swiper-wrapper">
                         @foreach($settings?->achievements as $achievement)

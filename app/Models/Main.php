@@ -20,7 +20,8 @@ class Main extends Model
         'background_image',
         'about_us',
         'partners',
-        'big_slider'
+        'big_slider',
+        'service_description'
     ];
 
 }

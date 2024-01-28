@@ -55,6 +55,11 @@ class Main extends Page implements HasForms
                                     ->rows(4)
                             ]),
                     ]),
+                Section::make('Описание услуги')
+                    ->schema([
+                        Textarea::make('service_description')
+                            ->label('')
+                    ]),
                 Section::make('О нас')
                     ->schema([
                         Textarea::make('about_us.description')

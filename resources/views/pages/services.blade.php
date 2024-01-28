@@ -1,4 +1,4 @@
-@php use App\Models\Setting; @endphp
+@php use App\Models\Service;use App\Models\Setting; @endphp
 @extends('template')
 
 @section('title')
@@ -10,8 +10,7 @@
         <div class="container">
             <div class="page-heading__container">
                 <p class="page-heading__title">Услуги</p>
-                <p class="page-heading__description">Реконструкция этого огромного по своим масштабам здания превратила
-                    его в новый современный торгово-развлекательный центр.</p>
+                <p class="page-heading__description">{{ $setting['page_descriptions']['services'] ?? '' }}</p>
             </div>
         </div>
     </div>
@@ -42,7 +41,7 @@
                         </a>
                     @endforeach
                 </div>
-                @if ($show)
+                @if ($show && Service::query()->count() > 5)
                     <a href="{{ route('all-services') }}" style="margin: 0 auto" class="primary-btn">
                         Загрузить ещё
                     </a>

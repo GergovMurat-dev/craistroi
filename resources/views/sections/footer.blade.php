@@ -7,7 +7,7 @@
                         <div class="footer__logo-container">
                             <img src="{{ asset('/assets/img/logo.png') }}" alt="">
                         </div>
-                        <p>Крайстрой</p>
+                        <p>КРАЙСТРОЙ</p>
                     </div>
                 </a>
                 <div class="footer__container__menu-container">
